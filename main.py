@@ -128,6 +128,10 @@ while True:
                         if blob.exists():
                             array = np.frombuffer(blob.download_as_string(), np.uint8)
                             imgStudent = cv2.imdecode(array, cv2.COLOR_BGRA2BGR)
+
+                            # Resize ảnh về kích thước 216x216 bất kể kích thước gốc
+                            if imgStudent is not None:
+                                imgStudent = cv2.resize(imgStudent, (216, 216))
                         else:
                             print(f"Không tìm thấy ảnh sinh viên với ID: {id}")
                             imgStudent = np.zeros((216, 216, 3), dtype=np.uint8)
